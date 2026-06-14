@@ -87,6 +87,38 @@ $$X_{\text{mixed}}[u,v] = \sum_{i=1}^{4} \left( W_{i,\text{mag}} \cdot |X_i[u,v]
 
 ---
 
+###  Fourier Mixing Empirical Test Cases
+
+Below is a curated verification matrix demonstrating how individual 2D-FT components and spatial masks govern structural image reconstruction:
+
+<table>
+  <tr>
+    <td width="50%">
+      <p align="center"><b>[CASE 1] Geometry Dominance (100% Phase A + 100% Magnitude B)</b></p>
+      <img src="https://github.com/user-attachments/assets/a2199761-f7d3-45a6-8a47-9d03700ecd68" alt="Phase vs Magnitude Dominance" width="100%" />
+      <p><i>Observation: The output retains Image A's structural form/edges but inherits Image B's global illumination metrics.</i></p>
+    </td>
+    <td width="50%">
+      <p align="center"><b>[CASE 2] Structural Smoothing (Inner Region Low-Pass Mask)</b></p>
+      <img src="https://github.com/user-attachments/assets/24cfe1d1-7fe8-42e1-b0d1-78c66b8916e5" alt="Low Pass Filter Blur" width="100%" />
+      <p><i>Observation: Restricting frequency bounds to the inner central DC matrix induces mathematical spatial blurring.</i></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <p align="center"><b>[CASE 3] Edge Extraction (Outer Region High-Pass Mask)</b></p>
+      <img src="https://github.com/user-attachments/assets/77e565d0-3fa9-4321-8d80-5cfd791aee68" alt="High Pass Filter Edges" width="100%" />
+      <p><i>Observation: Eliminating central low frequencies strips basic lighting, successfully isolating high-frequency spatial boundaries.</i></p>
+    </td>
+    <td width="50%">
+      <p align="center"><b>[CASE 4] Complex Conjugate Fusion (Real & Imaginary Intersect)</b></p>
+      <img src="https://github.com/user-attachments/assets/06b721b0-4a57-4040-9a1a-aa44a14d400e" alt="Real and Imaginary Mixing" width="100%" />
+      <p><i>Observation: Balanced mixing of Cartesian elements demonstrates constructive and destructive wave interferences.</i></p>
+    </td>
+  </tr>
+</table>
+---
+
 ## Architectural Repository Schema
 
 The repository maintains an explicit structural decoupling between the heavy mathematical algorithms and user-interface state hooks:
